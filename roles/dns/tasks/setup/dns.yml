@@ -1,0 +1,18 @@
+---
+- name: "Setup | DNS | Manage DNS record at Azure"
+  delegate_to: "localhost"
+  azure.azcollection.azure_rm_dnsrecordset:
+    state: "{{ dns.state }}"
+    client_id: "{{ dns.azure_client_id }}"
+    secret: "{{ dns.azure_secret }}"
+    subscription_id: "{{ dns.azure_subscription_id }}"
+    tenant: "{{ dns.azure_tenant }}"
+    time_to_live: "{{ dns.ttl }}"
+    resource_group: "{{ dns.azure_resource_group }}"
+    relative_name: "{{ dns.relative_name }}"
+    zone_name: "{{ dns.zone }}"
+    record_type: "{{ dns.record_type }}"
+    records:
+      - entry: "{{ dns.record }}"
+
+...
